@@ -14,7 +14,10 @@ function Services() {
     const update = () => {
       if (!timeRef.current) return;
       const now = new Date();
-      timeRef.current.textContent = now.toISOString().split('T')[1].split('.')[0];
+      timeRef.current.textContent = now.toLocaleTimeString('es-AR', {
+        hour12: false,
+        timeZone: 'America/Argentina/Buenos_Aires',
+      });
     };
 
     update();
@@ -30,12 +33,12 @@ function Services() {
     >
       <div className="relative z-[1] mx-auto grid max-w-6xl gap-8 md:grid-cols-2">
         <div data-services-col="left">
-          <span className="geo-icon" />
-
           <h2 className="mt-4 font-display text-[clamp(1.5rem,4vw,3rem)] font-bold uppercase leading-[0.9] tracking-[-0.02em] text-vekka-amber-mid">
             Profesionaliza
             <br />
             Tu Presencia
+            <br />
+            Online
           </h2>
 
           <p className="mt-6 max-w-[40ch] text-[clamp(1rem,1.5vw,1.25rem)] leading-relaxed text-vekka-gold/80">
@@ -67,9 +70,9 @@ function Services() {
         </div>
       </div>
 
-      <div className="absolute bottom-4 left-8 right-8 z-[1] flex flex-col gap-1 font-mono text-[0.7rem] uppercase tracking-wide text-vekka-gold/40 sm:flex-row sm:justify-between">
+      <div className="absolute bottom-3 left-4 right-4 z-[1] flex flex-col gap-2 px-2 py-2 font-mono text-[0.7rem] uppercase tracking-wide text-vekka-gold/40 sm:bottom-4 sm:left-8 sm:right-8 sm:gap-1 sm:px-0 sm:py-0 sm:flex-row sm:justify-between">
         <span>&copy; VIKKA SYSTEMS INC. // TODOS LOS DERECHOS RESERVADOS</span>
-        <span>HORA SERVIDOR: <span ref={timeRef}>00:00:00</span> UTC</span>
+        <span>HORA SERVIDOR: <span ref={timeRef}>00:00:00</span> UTC-3</span>
       </div>
     </section>
   );
