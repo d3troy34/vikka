@@ -1,30 +1,19 @@
-function Contact() {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const nombre = form.nombre.value;
-    const email = form.email.value;
-    const telefono = form.telefono.value;
-    const mensaje = form.message.value;
+function Contact({ showSentMessage = false }) {
+  const openWhatsApp = (form) => {
+    if (!form) return;
 
-    const subject = encodeURIComponent(`Nuevo mensaje de ${nombre}`);
-    const body = encodeURIComponent(
-      `Nombre: ${nombre}\nEmail: ${email}\nTeléfono: ${telefono}\n\nMensaje:\n${mensaje}`
-    );
-    window.location.href = `mailto:francobales3@gmail.com?subject=${subject}&body=${body}`;
-  };
-
-  const handleWhatsApp = () => {
-    const form = document.querySelector('[data-contact-form]');
     const nombre = form.nombre.value || '';
     const mensaje = form.message.value || '';
     const text = encodeURIComponent(
-      `Hola, soy ${nombre}. ${mensaje}`.trim()
+      `Hola soy ${nombre}, mi objetivo es ${mensaje || '...'}`
     );
-    window.open(
-      `https://wa.me/5491128818819?text=${text}`,
-      '_blank'
-    );
+    window.open(`https://wa.me/5491128818819?text=${text}`, '_blank');
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    openWhatsApp(e.target);
+    window.location.assign('/mensaje-enviado#contacto');
   };
 
   return (
@@ -133,18 +122,17 @@ function Contact() {
           <div className="mt-4 flex flex-col gap-4 sm:flex-row">
             <button
               type="submit"
-              className="min-h-[3.8rem] w-full rounded-sm border-2 border-vekka-amber bg-vekka-ink px-10 font-display text-base font-bold uppercase tracking-[0.22em] text-vekka-amber shadow-[0_0_20px_rgba(217,119,6,0.15)] transition-all duration-200 hover:bg-vekka-amber hover:text-vekka-ink hover:shadow-[0_0_30px_rgba(217,119,6,0.4)] sm:w-auto"
+              className="min-h-[3.8rem] w-full rounded-sm border-2 border-vekka-amber bg-vekka-ink px-10 font-display text-base font-bold uppercase tracking-[0.22em] text-vekka-amber shadow-[0_0_24px_rgba(217,119,6,0.35),0_0_52px_rgba(217,119,6,0.22)] transition-all duration-200 hover:bg-vekka-amber hover:text-vekka-ink hover:shadow-[0_0_40px_rgba(217,119,6,0.55),0_0_70px_rgba(217,119,6,0.3)] sm:w-auto"
             >
               Enviar Mensaje
             </button>
-            <button
-              type="button"
-              onClick={handleWhatsApp}
-              className="min-h-[3.8rem] w-full rounded-sm border-2 border-[#25D366] bg-vekka-ink px-10 font-display text-base font-bold uppercase tracking-[0.22em] text-[#25D366] transition-all duration-200 hover:bg-[#25D366] hover:text-vekka-ink sm:w-auto"
-            >
-              WhatsApp
-            </button>
           </div>
+
+          {showSentMessage ? (
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-vekka-amber">
+              Tu mensaje ha sido enviado.
+            </p>
+          ) : null}
         </form>
       </div>
     </section>
@@ -152,3 +140,4 @@ function Contact() {
 }
 
 export default Contact;
+

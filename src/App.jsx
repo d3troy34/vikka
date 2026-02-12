@@ -18,7 +18,7 @@ const TICKER_ITEMS = [
   'Infraestructura SEO',
 ];
 
-function App() {
+function App({ showSentMessage = false }) {
   useLayoutEffect(() => {
     const cleanup = initVekkaMotion();
     return () => {
@@ -62,7 +62,7 @@ function App() {
 
       <Services />
       <About />
-      <Contact />
+      <Contact showSentMessage={showSentMessage} />
 
       <footer className="footer-mirror">
         <div className="select-none whitespace-nowrap font-display text-[clamp(4rem,12vw,14rem)] font-bold leading-[0.85] tracking-[-0.04em] opacity-[0.15] rotate-180">
