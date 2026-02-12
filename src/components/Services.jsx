@@ -70,7 +70,7 @@ function Services() {
         </div>
       </div>
 
-      <div className="absolute bottom-3 left-4 right-4 z-[1] flex flex-col gap-2 px-2 py-2 font-mono text-[0.7rem] uppercase tracking-wide text-vekka-gold/40 sm:bottom-4 sm:left-8 sm:right-8 sm:gap-1 sm:px-0 sm:py-0 sm:flex-row sm:justify-between">
+      <div className="relative z-[1] mt-6 flex flex-col gap-2 border-t border-vekka-gold/20 pt-4 font-mono text-[0.7rem] uppercase tracking-wide text-vekka-gold/40 md:absolute md:bottom-4 md:left-8 md:right-8 md:mt-0 md:border-0 md:pt-0 md:gap-1 md:flex-row md:justify-between">
         <span>&copy; VIKKA SYSTEMS INC. // TODOS LOS DERECHOS RESERVADOS</span>
         <span>HORA SERVIDOR: <span ref={timeRef}>00:00:00</span> UTC-3</span>
       </div>
