@@ -1,0 +1,294 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
+  html {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: auto;
+  }
+
+  body {
+    margin: 0;
+    overflow-x: hidden;
+    font-family: 'Manrope', system-ui, sans-serif;
+    background-color: #1C1917;
+    color: #FDE68A;
+    cursor: crosshair;
+  }
+
+  a, button, [role="button"], input, textarea, select, summary {
+    cursor: pointer;
+  }
+
+  input[type="text"], input[type="email"], input[type="tel"],
+  input[type="search"], input[type="url"], input[type="number"],
+  textarea {
+    cursor: text;
+  }
+
+  ::selection {
+    background-color: rgba(217, 119, 6, 0.3);
+    color: inherit;
+  }
+}
+
+@layer utilities {
+  .section-shell {
+    position: relative;
+    z-index: 1;
+  }
+
+  [data-animate] {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+  }
+
+  /* ── Hero ── */
+
+  .hero-section {
+    position: relative;
+    height: 60vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #0C0A09;
+    border-bottom: 1px solid rgba(217, 119, 6, 0.2);
+  }
+
+  .hero-bg-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.3;
+    filter: sepia(0.8) saturate(1.5) brightness(0.6) contrast(1.1);
+    z-index: 0;
+    transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  .hero-section:hover .hero-bg-image {
+    transform: scale(1.02);
+  }
+
+  /* ── Pinned corner metadata ── */
+
+  .pinned {
+    position: absolute;
+    z-index: 10;
+  }
+
+  .pinned-tl { top: 5rem; left: 2rem; text-align: left; }
+  .pinned-tr { top: 2rem; right: 2rem; text-align: right; }
+  .pinned-bl { bottom: 2rem; left: 2rem; text-align: left; }
+  .pinned-br { bottom: 2rem; right: 2rem; text-align: right; }
+
+  /* ── Geometric icon ── */
+
+  .geo-icon {
+    width: 24px;
+    height: 24px;
+    border: 1px solid #D97706;
+    display: inline-block;
+    position: relative;
+    margin-bottom: 0.5rem;
+  }
+
+  .geo-icon::after,
+  .geo-icon::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #D97706;
+  }
+
+  .geo-icon::after { transform: rotate(45deg); }
+  .geo-icon::before { transform: rotate(-45deg); }
+
+  /* ── Logo breathing hover ── */
+
+  @keyframes logo-breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.018); }
+  }
+
+  .logo-breathe {
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  .logo-breathe:hover {
+    animation: logo-breathe 3s ease-in-out infinite;
+  }
+
+  /* ── Ticker ── */
+
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .ticker-wrap {
+    overflow: hidden;
+    padding: 1rem 0;
+    background: #292524;
+    border-top: 1px solid rgba(217, 119, 6, 0.1);
+    border-bottom: 1px solid rgba(217, 119, 6, 0.1);
+  }
+
+  .ticker {
+    display: flex;
+    white-space: nowrap;
+    animation: ticker 25s linear infinite;
+  }
+
+  .ticker-item {
+    padding-right: 4rem;
+    font-family: 'Sora', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #D97706;
+  }
+
+  /* ── Moss block (Services) ── */
+
+  .moss-block {
+    background-color: #451A03;
+    color: #FDE68A;
+    min-height: 40vh;
+    position: relative;
+    padding: 4rem 2rem;
+  }
+
+  .moss-block::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.08;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 180px 180px;
+  }
+
+  /* ── Service list ── */
+
+  .service-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid rgba(253, 230, 138, 0.1);
+  }
+
+  .service-item {
+    border-bottom: 1px solid rgba(253, 230, 138, 0.1);
+    padding: 1.5rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    transition: background-color 0.2s ease, padding-left 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+  }
+
+  .service-item:hover {
+    background-color: rgba(217, 119, 6, 0.1);
+    padding-left: 1rem;
+    color: #fff;
+  }
+
+  .service-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .service-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9rem;
+    opacity: 0.6;
+  }
+
+  /* ── CTA button (brutalist) ── */
+
+  .cta-btn {
+    display: inline-block;
+    border: 1px solid #D97706;
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    color: #FDE68A;
+    text-decoration: none;
+    transition: background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1), color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  .cta-btn:hover {
+    background-color: #D97706;
+    color: #0C0A09;
+  }
+
+  /* ── Footer mirror ── */
+
+  .footer-mirror {
+    background-color: #78350F;
+    color: #0C0A09;
+    padding: 4rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-top: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  /* ── Mobile ── */
+
+  @media (max-width: 768px) {
+    .pinned-bl {
+      display: none;
+    }
+
+    .hero-section {
+      height: 50vh;
+    }
+
+    .moss-block {
+      padding: 3rem 1.5rem;
+    }
+
+    .service-title {
+      font-size: 1.4rem;
+    }
+
+    .service-meta {
+      font-size: 0.75rem;
+    }
+  }
+}
