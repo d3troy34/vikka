@@ -67,11 +67,9 @@ function Services() {
         </div>
       </div>
 
-      <div className="absolute bottom-4 left-8 z-[1] font-mono text-[0.7rem] uppercase tracking-wide text-vekka-gold/40">
-        &copy; VIKKA SYSTEMS INC. // TODOS LOS DERECHOS RESERVADOS
-      </div>
-      <div className="absolute bottom-4 right-8 z-[1] font-mono text-[0.7rem] uppercase tracking-wide text-vekka-gold/40">
-        HORA SERVIDOR: <span ref={timeRef}>00:00:00</span> UTC
+      <div className="absolute bottom-4 left-8 right-8 z-[1] flex flex-col gap-1 font-mono text-[0.7rem] uppercase tracking-wide text-vekka-gold/40 sm:flex-row sm:justify-between">
+        <span>&copy; VIKKA SYSTEMS INC. // TODOS LOS DERECHOS RESERVADOS</span>
+        <span>HORA SERVIDOR: <span ref={timeRef}>00:00:00</span> UTC</span>
       </div>
     </section>
   );
